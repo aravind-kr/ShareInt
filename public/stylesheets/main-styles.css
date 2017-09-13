@@ -1,0 +1,32 @@
+@font-face
+{
+    font-family: lavenderia;
+    src: url('/Fonts/Lavanderia Delicate.otf');
+}
+
+.navbar{
+    text-align: center;
+}
+
+.navbar-brand{
+    font-family: lavenderia;
+    font-weight: 700;
+    font-size: larger;
+    text-align: center;
+}
+
+.panel{
+    padding : 30px;
+}
+
+/* form styles */
+.card {
+    margin-top: 5px;
+}
+.card-block{
+    padding: 1em !important;
+}
+.form-element{
+    margin-bottom:0px;
+    padding: 5px;
+}

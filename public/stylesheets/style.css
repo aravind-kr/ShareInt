@@ -1,0 +1,76 @@
+@font-face
+{
+  font-family: lavenderia;
+  src: url('/Fonts/Lavanderia Delicate.otf');
+}
+
+@font-face
+{
+  font-family: yellowtail;
+  src: url('/Fonts/Yellowtail-Regular.otf');
+}
+
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  background: url(/images/loginBG.jpg) no-repeat center center fixed;
+  background-size: cover;
+}
+
+.main{
+  margin-top: 165px;
+}
+
+/* Company name styles*/
+
+.company-name-text{
+  color: #ffffff;
+  font-family: lavenderia;
+  font-weight: 500;
+  font-size: 50px;
+  text-align: center;
+}
+
+/* Login Styles */
+
+.login-form{
+    margin-top: 10px;
+    width: 100%;
+}
+
+.login-field{
+    margin: 5px;
+    margin-bottom: 15px;
+}
+
+::-webkit-input-placeholder{
+    text-align: center;
+    color: #ffffff;
+}
+
+.login-btn{
+    text-align: center;
+    margin-top: 0px;
+}
+
+.btn-primary{
+    font-size: 16px;
+    color: #2d8ded;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.login-input
+{
+    font-stretch: ultra-expanded;
+    color: #ffffff;
+    font-size: 16px;
+    padding: 5px;
+    width: 100%;
+    background-color: transparent;
+    border: #ffffff solid 0.5px;
+    border-radius: 10px;
+}
+
+.error-message{
+    color: #ffffff;
+}

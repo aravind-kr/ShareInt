@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/main-styles.css' />
+    <link rel="stylesheet" href='/stylesheets/bootstrap.min.css' />
+    <script href="/javascript/bootstrap.js"></script>
+    <script href="/javascript/main-script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://use.fontawesome.com/3aa198ee5c.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse bg-inverse">
+        <a class="navbar-brand" href="#">ShareInt</a>
+    </nav>
+    <div class="container-fluid">
+        <div class=" row">
+            <div class="offset-3 col-6">
+                <div class="card col-12">
+                    <div class="card-block">
+                        <form action="/AddInt" method="post">
+                            <h4 class="card-title">Share Your Interesting Events :</h4>
+                            <div class="form-element">
+                                <input class="form-control" type="text" name="InterestTitle" placeholder="Title :">
+                            </div>
+                            <div class="form-element">
+                                <textarea class="form-control" name="InterestText" rows="3" placeholder="Description :"></textarea>
+                            </div>
+                            <div class="form-element">
+                                <button type="submit" class="btn btn-primary">Submit</button>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+                <% for (var i = 0; i < Interest.length ; i++ ){%>
+                <div class="card col-12">
+                    <div class="card-block">
+                        <h4 class="card-title"><%= Interest[i].Title%></h4>
+                        <h6 class="card-subtitle mb-2 text-muted"><%= Interest[i].Date.toString().substring(0,10)%></h6>
+                        <p class="card-text"><%= Interest[i].Text %></p>
+                        <button class="btn btn-primary" onclick="like(<%= Interest[i].Id%>)" type="submit" id="Like">
+                            <i class="fa fa-heart" style="white-space: nowrap;" aria-hidden="true"></i>
+                            <p class="Like<%=Interest[i].Id%>" style="display: inline;"> <%= Interest[i].Likes%></p>
+                        </button>
+
+                        <button class="btn btn-info Comment">
+                            <i class="fa fa-comment" aria-hidden="true"></i>
+                            <p class="Like<%=Interest[i].Id%>" style="display: inline;"><%= Interest[i].Comment.length%></p>
+                        </button>
+                        <div class="ToggleComment" style="display: none;">
+                            <p style="margin-top: 10px;margin-bottom: 5px;">Comments : </p>
+                            <ul class="list-group list-group-flush" style="margin-top: 10px;">
+                                <% for(var j = 0 ; j < Interest[i].Comment.length ; j++){ %>
+                                <li class="list-group-item"><%= Interest[i].Comment[j].UserName %> : <%= Interest[i].Comment[j].Text %></li>
+                                <% } %>
+                                <li class="list-group-item">
+                                    <form action="/Comment/:<%= Interest[i].Id %>" method="post">
+                                        <div class="col-3">
+                                            <p>Add Comment </p>
+                                        </div>
+                                        <div class="col-6">
+                                            <textarea class="CommentText" name="CommentText" class="form-control"rows="2"></textarea>
+                                        </div>
+                                        <div class="col-3">
+                                            <button type="submit"class="btn btn-danger" style="margin-top: 10px;">Submit</button>
+                                        </div>
+                                    </form>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+</body>
+<script>
+    function like(id) {
+        console.log(id);
+        var xmlHttp = new XMLHttpRequest();
+        xmlHttp.onreadystatechange = function() {
+            if (xmlHttp.readyState == 4 && xmlHttp.status == 200){
+                window.location.reload();
+            }
+
+        }
+        xmlHttp.open("GET", '/like/:'+id , true);
+        xmlHttp.send(null);
+    }
+
+    $(".Comment").click(function () {
+        $(this).next('div.ToggleComment').slideToggle('slow');
+    });
+
+</script>
+</html>
