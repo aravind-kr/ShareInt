@@ -20,7 +20,7 @@ var Interest = mongoose.Schema({
 
 var InterestModel = mongoose.model('InterestModel',Interest,"Interest");
 
-var HostString = "mongodb://arvind:arvind@ds121222.mlab.com:21222/shareint";
+var HostString = "mongodb://<dbuser>:<dbpassword>@ds121222.mlab.com:21222/shareint";
 mongoose.connect(HostString,{useMongoClient : true});
 
 
